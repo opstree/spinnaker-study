@@ -4,7 +4,7 @@ resource "aws_s3_bucket" "helm-charts-spinnaker-lab" {
 
   tags = {
     Name        = "helm-charts-spinnaker-lab"
-    Purpose     = "Store Helm Charts for Spinnaker Lab"
+    Purpose     = "Store Helm Charts for a Spinnaker Lab"
     Terraform   = true
   }
 }
