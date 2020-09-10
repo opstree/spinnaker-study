@@ -2,26 +2,26 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
     labels:
-        app: SpinnakerForce-microservice
+        app: spinnakerforce-microservice
         stack: frontend
         source: demo
-    name: SpinnakerForce-microservice
+    name: spinnakerforce-microservice
     namespace: microservices
 spec:
     replicas: 3
     selector:
         matchLabels:
-            run: SpinnakerForce-microservice
+            run: spinnakerforce-microservice
     template:
         metadata:
             labels:
-                app: SpinnakerForce-microservice
-                run: SpinnakerForce-microservice
+                app: spinnakerforce-microservice
+                run: fpinnakerforce-microservice
                 source: demo
         spec:
             containers:
                 -   image: 702037529261.dkr.ecr.us-west-2.amazonaws.com/SpinnakerForce-microservice
-                    name: SpinnakerForce-microservice
+                    name: spinnakerforce-microservice
                     ports:
                         -   name: web
                             containerPort: 8080
@@ -31,13 +31,13 @@ kind: Service
 apiVersion: v1
 metadata:
     labels:
-        app: SpinnakerForce-microservice-service
-    name: SpinnakerForce-microservice-service
+        app: spinnakerforce-microservice-service
+    name: spinnakerforce-microservice-service
     namespace: microservices
 spec:
     selector:
         source: demo
-        app: SpinnakerForce-microservice
+        app: spinnakerforce-microservice
     ports:
         -   name: web
             protocol: TCP
@@ -51,13 +51,13 @@ kind: Ingress
 metadata:
     annotations:
         nginx.ingress.kubernetes.io/rewrite-target: /$2
-    name: SpinnakerForce-ingress
+    name: spinnakerforce-ingress
     namespace: microservices
 spec:
     rules:
         -   http:
                 paths:
-                    -   path: /SpinnakerForce(/|$)(.*)
+                    -   path: /spinnakerforce(/|$)(.*)
                         backend:
-                            serviceName: SpinnakerForce-microservice-service
+                            serviceName: spinnakerforce-microservice-service
                             servicePort: 30201
